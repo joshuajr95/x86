@@ -1,0 +1,72 @@
+
+practice3_2:	file format Mach-O 64-bit x86-64
+
+
+Disassembly of section __TEXT,__text:
+
+0000000100000ee0 _main:
+100000ee0: 55                          	pushq	%rbp
+100000ee1: 48 89 e5                    	movq	%rsp, %rbp
+100000ee4: 53                          	pushq	%rbx
+100000ee5: 50                          	pushq	%rax
+100000ee6: 48 8d 1d bd 00 00 00        	leaq	189(%rip), %rbx
+100000eed: 48 89 df                    	movq	%rbx, %rdi
+100000ef0: 31 f6                       	xorl	%esi, %esi
+100000ef2: 31 c0                       	xorl	%eax, %eax
+100000ef4: e8 91 00 00 00              	callq	145 <dyld_stub_binder+0x100000f8a>
+100000ef9: 48 89 df                    	movq	%rbx, %rdi
+100000efc: be 01 00 00 00              	movl	$1, %esi
+100000f01: 31 c0                       	xorl	%eax, %eax
+100000f03: e8 82 00 00 00              	callq	130 <dyld_stub_binder+0x100000f8a>
+100000f08: 48 89 df                    	movq	%rbx, %rdi
+100000f0b: be 02 00 00 00              	movl	$2, %esi
+100000f10: 31 c0                       	xorl	%eax, %eax
+100000f12: e8 73 00 00 00              	callq	115 <dyld_stub_binder+0x100000f8a>
+100000f17: 48 89 df                    	movq	%rbx, %rdi
+100000f1a: be 03 00 00 00              	movl	$3, %esi
+100000f1f: 31 c0                       	xorl	%eax, %eax
+100000f21: e8 64 00 00 00              	callq	100 <dyld_stub_binder+0x100000f8a>
+100000f26: 48 89 df                    	movq	%rbx, %rdi
+100000f29: be 04 00 00 00              	movl	$4, %esi
+100000f2e: 31 c0                       	xorl	%eax, %eax
+100000f30: e8 55 00 00 00              	callq	85 <dyld_stub_binder+0x100000f8a>
+100000f35: 48 89 df                    	movq	%rbx, %rdi
+100000f38: be 05 00 00 00              	movl	$5, %esi
+100000f3d: 31 c0                       	xorl	%eax, %eax
+100000f3f: e8 46 00 00 00              	callq	70 <dyld_stub_binder+0x100000f8a>
+100000f44: 48 89 df                    	movq	%rbx, %rdi
+100000f47: be 06 00 00 00              	movl	$6, %esi
+100000f4c: 31 c0                       	xorl	%eax, %eax
+100000f4e: e8 37 00 00 00              	callq	55 <dyld_stub_binder+0x100000f8a>
+100000f53: 48 89 df                    	movq	%rbx, %rdi
+100000f56: be 07 00 00 00              	movl	$7, %esi
+100000f5b: 31 c0                       	xorl	%eax, %eax
+100000f5d: e8 28 00 00 00              	callq	40 <dyld_stub_binder+0x100000f8a>
+100000f62: 48 89 df                    	movq	%rbx, %rdi
+100000f65: be 08 00 00 00              	movl	$8, %esi
+100000f6a: 31 c0                       	xorl	%eax, %eax
+100000f6c: e8 19 00 00 00              	callq	25 <dyld_stub_binder+0x100000f8a>
+100000f71: 48 89 df                    	movq	%rbx, %rdi
+100000f74: be 09 00 00 00              	movl	$9, %esi
+100000f79: 31 c0                       	xorl	%eax, %eax
+100000f7b: e8 0a 00 00 00              	callq	10 <dyld_stub_binder+0x100000f8a>
+100000f80: 31 c0                       	xorl	%eax, %eax
+100000f82: 48 83 c4 08                 	addq	$8, %rsp
+100000f86: 5b                          	popq	%rbx
+100000f87: 5d                          	popq	%rbp
+100000f88: c3                          	retq
+
+Disassembly of section __TEXT,__stubs:
+
+0000000100000f8a __stubs:
+100000f8a: ff 25 70 10 00 00           	jmpq	*4208(%rip)
+
+Disassembly of section __TEXT,__stub_helper:
+
+0000000100000f90 __stub_helper:
+100000f90: 4c 8d 1d 71 10 00 00        	leaq	4209(%rip), %r11
+100000f97: 41 53                       	pushq	%r11
+100000f99: ff 25 61 00 00 00           	jmpq	*97(%rip)
+100000f9f: 90                          	nop
+100000fa0: 68 00 00 00 00              	pushq	$0
+100000fa5: e9 e6 ff ff ff              	jmp	-26 <__stub_helper>

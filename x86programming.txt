@@ -1,0 +1,26 @@
+How to Program in x86 on Mac OS X
+
+
+Part 1: Writing Code
+
+All code must be contained in a section annotated with the .text assembler directive.
+All static data must be contained in a section annotated with the .data assembler directive.
+
+The main function must be called _main since on Mac, the names are mangled with an underscore.
+_main must be declared a global symbol with the .globl _main assembler directive.
+
+All libc functions can simply be referenced without including the corresponding libraries in a #include statement.
+Thus the file can be a .asm file instead of a .s file. libc function names should be mangled
+with a preceding underscore. For example callq _printf.
+
+
+Part 2: Assembling and Linking
+
+To assemble the code, use the command as <filename>.asm -o <filename>.o
+To link the code with libc use the command gcc <filename>.o /usr/lib/libSystem.dylib -o <filename>
+
+gcc automatically takes the _main and adds the startup code and creates the entry point _start which
+calls the startup code and then calls _main
+
+if using ld to link, then would need to call the main function _start since the loader looks for the entry point
+by name _start

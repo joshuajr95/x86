@@ -1,0 +1,93 @@
+x86 Registers, Calling Conventions, and Stack Management
+
+
+Part 1: Registers
+
+%eax or %rax – Stores function return values
+%ebx or %rbx – Base pointer for the data section
+%ecx or %rcx – Counter for string and loop operations
+%edx 0r %rdx – I/O pointer
+%esi or %rsi – Source pointer for string operations
+%edi or %rdi – Destination pointer for string operations
+%esp or %rsp – Stack pointer (top of stack)
+%ebp or %rbp – Stack frame base pointer (bottom of stack)
+
+%eip or %rip – Instruction pointer (program counter)
+
+EFLAGS – Holds a number of single-bit flags
+
+
+Prefix r denotes 64-bit register, prefix e denotes 32-bit
+register, no prefix denotes 16-bit register. %ax, %bx, %cx, %dx
+can also be accessed using for example %ah and %al, which
+access the high (most significant) 8 bits and low
+(least significant) 8 bits of the registers, respectively
+
+
+
+Part 2: Callee and Caller saved registers
+
+Caller-saved: %eax, %edx, %ecx
+Callee-saved: %ebp, %ebx, %esi, %edi
+
+
+
+Part 3: Calling Conventions
+
+Two most popular: cdecl and stdcall
+
+**** cdecl – "C declaration" is the most common ****
+-----------------------------------------------------
+
+Function parameters are pushed onto the stack from right to left,
+so last parameter is at highest address on the stack.
+
+Callee immediately saves the old frame pointer and sets up a new
+stack frame.
+
+%eax returns the result of the function, and if it needs more
+room to store the result, then %edx stores the most significant
+32 bits
+
+** CALLER is responsible for cleaning up the stack
+
+
+**** stdcall – Microsoft, basically ****
+----------------------------------------
+
+Same as above, but the CALLEE is responsible for cleaning
+up the stack
+
+
+	HOW IT ACTUALLY WORKS ON A REAL COMPUTER
+	----------------------------------------
+
+1st argument: Passed in %rdi
+2nd argument: Passed in %rsi
+3rd argument: Passed in %rdx
+4th argument: Passed in %rcx
+5th argument: Passed in %r8
+6th argument: Passed in %r9
+
+all other arguments passed on the stack
+
+
+
+***** STACK MUST BE 16-BYTE ALIGNED BEFORE CALL *****
+
+The stack memory between the calling function's last value of the
+stack pointer and the current function's current value of the stack
+pointer is what is known as the CALL FRAME.
+
+The value of the current function's stack pointer is stored in %rsp,
+but the value of the previous function's last stack pointer is
+called the CANONICAL FRAME ADDRESS. After the function call, the
+callq instruction has pushed %rip (%eip in 32-bit) onto the stack
+and %rsp is 8 bytes (4 bytes in 32-bit) less than CFA. Then, after
+pushing the caller's %rbp and overwriting it with %rsp, the new
+value of %rbp is 16 bytes less than CFA.
+
+Debuggers will store CALL FRAME INFORMATION (CFI) and use assembler
+directives such as .cfi_startproc, which defined a new CFI table
+
+

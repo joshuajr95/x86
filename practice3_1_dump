@@ -1,0 +1,40 @@
+
+practice3_1:	file format Mach-O 64-bit x86-64
+
+
+Disassembly of section __TEXT,__text:
+
+0000000100000f60 _main:
+100000f60: 55                          	pushq	%rbp
+100000f61: 48 89 e5                    	movq	%rsp, %rbp
+100000f64: 41 56                       	pushq	%r14
+100000f66: 53                          	pushq	%rbx
+100000f67: 4c 8d 35 3c 00 00 00        	leaq	60(%rip), %r14
+100000f6e: 31 db                       	xorl	%ebx, %ebx
+100000f70: 4c 89 f7                    	movq	%r14, %rdi
+100000f73: 89 de                       	movl	%ebx, %esi
+100000f75: 31 c0                       	xorl	%eax, %eax
+100000f77: e8 0e 00 00 00              	callq	14 <dyld_stub_binder+0x100000f8a>
+100000f7c: ff c3                       	incl	%ebx
+100000f7e: 83 fb 0a                    	cmpl	$10, %ebx
+100000f81: 75 ed                       	jne	-19 <_main+0x10>
+100000f83: 31 c0                       	xorl	%eax, %eax
+100000f85: 5b                          	popq	%rbx
+100000f86: 41 5e                       	popq	%r14
+100000f88: 5d                          	popq	%rbp
+100000f89: c3                          	retq
+
+Disassembly of section __TEXT,__stubs:
+
+0000000100000f8a __stubs:
+100000f8a: ff 25 70 10 00 00           	jmpq	*4208(%rip)
+
+Disassembly of section __TEXT,__stub_helper:
+
+0000000100000f90 __stub_helper:
+100000f90: 4c 8d 1d 71 10 00 00        	leaq	4209(%rip), %r11
+100000f97: 41 53                       	pushq	%r11
+100000f99: ff 25 61 00 00 00           	jmpq	*97(%rip)
+100000f9f: 90                          	nop
+100000fa0: 68 00 00 00 00              	pushq	$0
+100000fa5: e9 e6 ff ff ff              	jmp	-26 <__stub_helper>
